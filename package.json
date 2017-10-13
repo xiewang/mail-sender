@@ -1,0 +1,19 @@
+{
+  "name": "mail-sender",
+  "version": "1.0.0",
+  "description": "mail sender(node-v8.7.0)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiewang/mail-sender.git"
+  },
+  "author": "xiewang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiewang/mail-sender/issues"
+  },
+  "homepage": "https://github.com/xiewang/mail-sender"
+}
