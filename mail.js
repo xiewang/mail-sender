@@ -1,4 +1,17 @@
 const nodemailer = require('nodemailer');
+var log4js = require('log4js');
+
+log4js.configure({
+    appenders: {
+        out: {type: 'stdout'},
+        app: {type: 'file', filename: 'application.log'}
+    },
+    categories: {
+        default: {appenders: ['out', 'app'], level: 'debug'}
+    }
+});
+var logger = log4js.getLogger();
+logger.level = 'debug';
 
 const mail = {
     /*
@@ -39,11 +52,9 @@ const mail = {
         // send mail with defined transport object
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return console.log(error);
+                return logger.info('send fail'+error);
             }
-            console.log('Message sent: %s', info.messageId);
-            // Preview only available when sending through an Ethereal account
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+            logger.info('Message sent: %s', JSON.stringify(info));
         });
     }
 }
