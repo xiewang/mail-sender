@@ -20,7 +20,7 @@ var watcher = chokidar.watch(__dirname+'/mails.txt', {
 });
 watcher.on('change', function(path) {
     logger.info('mail File', path, 'has been changed');
-    send;
+    send();
 })
 var send = function(){
     fs.readFile(__dirname + '/doc.html', 'utf-8', function (err, data) {
