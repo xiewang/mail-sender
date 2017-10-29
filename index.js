@@ -50,12 +50,15 @@ watcher.on('change', function (path) {
     //send();
 });
 
+var senders = new Array(100);
 var send = function (address) {
     fs.readFile(__dirname + '/doc.html', 'utf-8', function (err, data) {
         var num = Math.ceil(Math.random() * 99);
         if(num<10){
             num = '0'+num;
         }
+        senders[num] = senders[num]||senders[num]==0?++senders[num]:0;
+        logger.info('===mails senders situation==='+ senders);
         if (err) {
             logger.error('read email doc failure'+err);
             return false
