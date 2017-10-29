@@ -39,6 +39,8 @@ watcher.on('change', function (path) {
                             send(v.mail);
                         });
                     })
+                } else {
+                    logger.error('mails.txt has no more new mail');
                 }
             }
         });
