@@ -40,7 +40,7 @@ watcher.on('change', function (path) {
                         });
                     })
                 } else {
-                    logger.error('mails.txt has no more new mail');
+                    logger.info('mails.txt has no more new mail');
                 }
             }
         });
