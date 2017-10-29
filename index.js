@@ -24,23 +24,26 @@ var watcher = chokidar.watch(__dirname + '/mails.txt', {
 });
 watcher.on('change', function (path) {
     logger.info('mail File', path, 'has been changed');
-    fs.readFile(__dirname + '/mails.txt', 'utf-8', function (err, data) {
+    setTimeout(function(){
+        fs.readFile(__dirname + '/mails.txt', 'utf-8', function (err, data) {
 
-        if (err) {
-            logger.error('read mails failure'+err);
-            return false
-        } else {
-            var mails = JSON.parse(data);
-           if(!mails[mails.length - 1].sent){
-               loadnewEmails().then(function(res){
-                   _.each(res, function(v){
-                       logger.info('send to'+ v.mail)
-                       send(v.mail);
-                   });
-               })
-           }
-        }
-    });
+            if (err) {
+                logger.error('read mails failure'+err);
+                return false
+            } else {
+                var mails = JSON.parse(data);
+                if(!mails[mails.length - 1].sent){
+                    loadnewEmails().then(function(res){
+                        _.each(res, function(v){
+                            logger.info('send to'+ v.mail)
+                            send(v.mail);
+                        });
+                    })
+                }
+            }
+        });
+    },200);
+
 
     //send();
 });
